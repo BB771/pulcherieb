@@ -13,7 +13,8 @@ export default function Gallery() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20">
-      <h1 className="mb-12 text-center font-serif text-5xl">Nos créations</h1>
+      <div className="mb-12 text-center">
+  <span className="mb-2 block text-xs uppercase tracking-[0.35em] text-caramel"> Portfolio</span><h1 className="font-serif text-4xl sm:text-5xl">Nos créations</h1></div>
       <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
         {photos.map((p) => {
           const url = supabase.storage.from('photos').getPublicUrl(p.image_path).data.publicUrl
