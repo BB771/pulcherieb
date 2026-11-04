@@ -18,7 +18,7 @@ export default function Gallery() {
         {photos.map((p) => {
           const url = supabase.storage.from('photos').getPublicUrl(p.image_path).data.publicUrl
           return (
-            <figure key={p.id} className="group relative aspect-[4/5] overflow-hidden"> 
+            <figure key={p.id} className="group relative aspect-4/5 overflow-hidden"> 
               <img src={url} alt={p.title} loading="lazy"
                 className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
               <figcaption className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/70 p-4 text-cream">

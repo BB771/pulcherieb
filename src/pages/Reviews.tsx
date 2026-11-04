@@ -1,43 +1,60 @@
-const reviews = [
-  {
-    name: 'Camille & Thomas',
-    event: 'Mariage',
-    text: 'Un gâteau de mariage à couper le souffle, aussi beau que délicieux. Nos invités en parlent encore.',
-  },
-  {
-    name: 'Sophie L.',
-    event: 'Anniversaire',
-    text: 'À l’écoute, créative et d’une grande précision. Le gâteau d’anniversaire de ma fille était un rêve.',
-  },
-  {
-    name: 'Julien M.',
-    event: 'Événement d’entreprise',
-    text: 'Un travail d’orfèvre pour notre événement. Professionnalisme irréprochable.',
-  },
-]
+import { useEffect, useState } from 'react'
+import { supabase } from '../lib/supabase'
+
+type Review = {
+  id: string
+  author: string
+  event_type: string | null
+  rating: number
+  content: string
+}
 
 export default function Reviews() {
-  return (
-    <main className="mx-auto max-w-6xl px-6 py-20">
-      <h1 className="mb-12 text-center font-serif text-5xl">Ils nous ont fait confiance</h1>
+  const [reviews, setReviews] = useState<Review[]>([])
+  const [loading, setLoading] = useState(true)
 
-      <div className="grid gap-6 md:grid-cols-3">
+  useEffect(() => {
+    supabase
+      .from('reviews')
+      .select('*')
+      .order('created_at', { ascending: false })
+      .then(({ data }) => {
+        setReviews(data ?? [])
+        setLoading(false)
+      })
+  }, [])
+
+  return (
+    <section className="mx-auto max-w-6xl px-6 py-20">
+      <h1 className="mb-12 text-center font-serif text-5xl">
+        Ils nous ont fait confiance
+      </h1>
+
+      {loading && <p className="text-center">Chargement…</p>}
+
+      {!loading && reviews.length === 0 && (
+        <p className="text-center text-espresso/60">
+          Les premiers avis arriveront bientôt.
+        </p>
+      )}
+
+      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {reviews.map((r) => (
-          <figure key={r.name} className="border border-sand bg-white p-8">
-            <div className="tracking-widest text-caramel">★★★★★</div>
-            <blockquote className="my-4 font-serif text-xl italic leading-snug">
-              {r.text}
-            </blockquote>
-            <figcaption className="text-xs uppercase tracking-[0.15em] text-espresso/70">
-              {r.name} · {r.event}
-            </figcaption>
-          </figure>
+          <blockquote key={r.id} className="border border-sand bg-white p-8">
+            <div className="tracking-widest text-caramel" aria-label={`${r.rating} sur 5`}>
+              {'★'.repeat(r.rating)}
+              {'☆'.repeat(5 - r.rating)}
+            </div>
+            <p className="my-4 font-serif text-xl italic leading-relaxed">
+              {r.content}
+            </p>
+            <footer className="text-xs uppercase tracking-widest text-espresso/60">
+              {r.author}
+              {r.event_type && ` — ${r.event_type}`}
+            </footer>
+          </blockquote>
         ))}
       </div>
-
-      <p className="mt-8 text-center text-sm text-espresso/60">
-        Exemples d’avis, à remplacer par ceux de vos vraies clientes.
-      </p>
-    </main>
+    </section>
   )
 }

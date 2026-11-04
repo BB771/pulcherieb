@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom'
+import Gallery from './Gallery'
+import Reviews from './Reviews'
+import Contact from './Contact'
 
 const highlights = [
   {
@@ -17,41 +20,65 @@ const highlights = [
 
 export default function Home() {
   return (
-    <main>
-      {/* Section d'accueil */}
-      <section className="grid min-h-[80vh] place-items-center bg-[radial-gradient(ellipse_at_50%_30%,var(--color-sand),var(--color-cream)_70%)] px-6 py-20 text-center">
+      <>
+      {/* Accueil */}
+      <div className="grid min-h-[86vh] place-items-center bg-linear-to-b from-sand to-cream px-6 py-20 text-center">
         <div>
-          <p className="text-xs uppercase tracking-[0.35em] text-caramel">
+          <span className="text-xs uppercase tracking-[0.35em] text-caramel">
             Pâtissière · Cake designer · Paris
-          </p>
-          <h1 className="mt-5 font-serif text-5xl leading-tight sm:text-7xl">
-            L’art de la <span className="italic text-caramel">pâtisserie</span>
+          </span>
+          <h1 className="my-5 font-serif text-5xl leading-tight sm:text-7xl">
+            L’art de la <i className="text-caramel">pâtisserie</i>
             <br />
             sur mesure
           </h1>
-          <p className="mx-auto mt-6 max-w-lg text-espresso/70">
-            Gâteaux de mariage, d’anniversaire et d’exception, dessinés et réalisés
-            à la main pour vos moments précieux.
+          <p className="mx-auto mb-9 max-w-md text-espresso/70">
+            Gâteaux de mariage, d’anniversaire et d’exception, dessinés et
+            réalisés à la main pour vos moments précieux.
           </p>
-
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <div className="flex flex-wrap justify-center gap-3">
             <Link
-              to="/contact"
-              className="bg-espresso px-8 py-3 text-xs uppercase tracking-[0.2em] text-cream transition hover:bg-caramel"
+              to="/#devis"
+              className="bg-espresso px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em] text-cream"
             >
               Demander un devis
             </Link>
             <Link
-              to="/galerie"
-              className="border border-caramel px-8 py-3 text-xs uppercase tracking-[0.2em] transition hover:bg-caramel hover:text-cream"
+              to="/#galerie"
+              className="border border-caramel px-8 py-3.5 text-xs font-medium uppercase tracking-[0.2em]"
             >
               Voir les créations
             </Link>
           </div>
         </div>
-      </section>
-
+      </div>
       {/* Trois points forts */}
+            <section className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:grid-cols-3">
+              {highlights.map((h) => (
+                <div key={h.title} className="border border-sand p-8 text-center">
+                  <h2 className="font-serif text-3xl italic text-caramel">{h.title}</h2>
+                  <p className="mt-3 text-espresso/70">{h.text}</p>
+                </div>
+              ))}
+            </section>
+      {/* Galerie */}
+      <div id="galerie" className="scroll-mt-20">
+        <Gallery />
+      </div>
+
+      
+
+      {/* Avis (fond différent, comme dans l'artefact) */}
+      <div id="avis" className="scroll-mt-20 bg-sand/60">
+        <Reviews />
+      </div>
+
+      {/* Devis */}
+      <div id="devis" className="scroll-mt-20">
+        <Contact />
+      </div>
+
+      {/* Trois points forts 
       <section className="mx-auto grid max-w-6xl gap-10 px-6 py-24 md:grid-cols-3">
         {highlights.map((h) => (
           <div key={h.title} className="border border-sand p-8 text-center">
@@ -59,7 +86,7 @@ export default function Home() {
             <p className="mt-3 text-espresso/70">{h.text}</p>
           </div>
         ))}
-      </section>
-    </main>
+      </section>*/}
+      </>
   )
 }

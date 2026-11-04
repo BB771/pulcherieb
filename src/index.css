@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap');
 @import 'tailwindcss';
 
-@theme {
+/* @theme {
   --font-serif: 'Cormorant Garamond', Georgia, serif;
   --font-sans: 'Jost', system-ui, sans-serif;
   --color-cream: #faf3ea;
@@ -10,4 +10,42 @@
   --color-espresso: #3a241a;
 }
 
-body { @apply bg-cream text-espresso font-sans font-light; }
+body { @apply bg-cream text-espresso font-sans font-light; } */
+
+/* Palette et polices du site : disponibles ensuite en classes Tailwind */
+@theme {
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Jost', system-ui, sans-serif;
+
+  --color-cream: #faf3ea;
+  --color-sand: #f1e3d0;
+  --color-caramel: #a8742f;
+  --color-espresso: #3a241a;
+}
+
+/* Styles globaux */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-espresso);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+  }
+
+  ::selection {
+    background: var(--color-caramel);
+    color: var(--color-cream);
+  }
+}
