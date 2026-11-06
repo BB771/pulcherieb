@@ -18,7 +18,7 @@ export default function Header() {
           onClick={() => setOpen(false)}
           className="font-serif text-2xl tracking-wide"
         >
-          Maison <span className="italic text-caramel">Aurélie</span>
+          Pulcherie <span className="italic text-caramel">.B</span>
         </Link>
 
         {/* Menu ordinateur : caché sur mobile */}

@@ -4,11 +4,12 @@ import Footer from './components/Footer'
 import ProtectedRoute from './components/ProtectedRoute'
 import ScrollToHash from './components/ScrollToHash'
 import Home from './pages/Home'
-import Gallery from './pages/Gallery'
-import Reviews from './pages/Reviews'
-import Contact from './pages/Contact'
+// import Gallery from './pages/Gallery'
+// import Reviews from './pages/Reviews'
+// import Contact from './pages/Contact'
 import Login from './pages/Login'
 import Admin from './pages/Admin'
+import MentionsLegales from './pages/MentionsLegales'
 
 export default function App() {
   return (
@@ -22,12 +23,13 @@ export default function App() {
           <Route path="/galerie" element={<Navigate to="/#galerie" replace />} />
           <Route path="/avis" element={<Navigate to="/#avis" replace />} />
           <Route path="/contact" element={<Navigate to="/#devis" replace />} />
-          {/*<Route path="/connexion" element={<Navigate to="/#login" replace />} /> 
+          { /*<Route path="/connexion" element={<Navigate to="/#login" replace />} /> */ }
 
-          {/* <Route path="/galerie" element={<Gallery />} />
+          { /* <Route path="/galerie" element={<Gallery />} />
           <Route path="/avis" element={<Reviews />} />
-          <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/contact" element={<Contact />} /> */ }
           <Route path="/connexion" element={<Login />} /> 
+          <Route path="/mentions-legales" element={<MentionsLegales />} />
           <Route
             path="/admin"
             element={
