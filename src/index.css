@@ -10,7 +10,7 @@
   --color-espresso: #3a241a;
 }
 
-body { @apply bg-espresso text-cream font-sans font-dark; }
+body { @apply bg-cream text-espresso font-sans font-light; } 
 
 /* Palette et polices du site : disponibles ensuite en classes Tailwind */
 /* @theme {
@@ -48,4 +48,4 @@ body { @apply bg-espresso text-cream font-sans font-dark; }
     background: var(--color-caramel);
     color: var(--color-cream);
   }
-} */
+} */ 

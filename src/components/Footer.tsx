@@ -1,16 +1,26 @@
+import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import AdminButton from './AdminButton'
 
 export default function Footer() {
   const year = new Date().getFullYear()
+   const [logoOk, setLogoOk] = useState(true)
 
   return (
     <footer className="border-t border-sand bg-espresso text-cream">
       <div className="mx-auto grid max-w-6xl gap-10 px-6 py-14 sm:grid-cols-3">
         {/* Marque */}
         <div>
+          {logoOk && (
+            <img
+              src="/logoPB.svg"
+              alt="Logo Maison Pulcherie.B"
+              className="mb-4 h-14 w-auto"
+              onError={() => setLogoOk(false)}
+            />
+          )}
           <p className="font-serif text-2xl tracking-wide">
-            Pulcherie <span className="text-caramel">.B</span>
+            Maison <span className="text-caramel">Pulcherie.B</span>
           </p>
           <p className="mt-3 text-sm text-cream/70">
             Pâtissière · Cake designer
@@ -64,7 +74,7 @@ export default function Footer() {
       {/* Ligne du bas */}
       <div className="border-t border-cream/15 px-6 py-5">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 text-xs text-cream/60">
-          <p>© {year} Pulcherie .B. Tous droits réservés.</p>
+          <p>© {year} Maison Pulcherie.B. Tous droits réservés.</p>
           <div className="flex items-center gap-5">
             <Link to="/mentions-legales" className="hover:text-caramel">
               Mentions légales

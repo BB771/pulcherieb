@@ -9,16 +9,23 @@ const links = [
 
 export default function Header() {
   const [open, setOpen] = useState(false)
+  const [logoOk, setLogoOk] = useState(true)
 
   return (
     <header className="sticky top-0 z-50 border-b border-sand bg-cream/90 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-        <Link
-          to="/"
-          onClick={() => setOpen(false)}
-          className="font-serif text-2xl tracking-wide"
-        >
-          Pulcherie <span className="italic text-caramel">.B</span>
+        <Link to="/" onClick={() => setOpen(false)} className="flex items-center gap-3">
+          {logoOk && (
+            <img
+              src="/logoPB.svg"
+              alt="Logo Maison Pulcherie.B"
+              className="h-10 w-auto"
+              onError={() => setLogoOk(false)}
+            />
+          )}
+          <span className="font-serif text-2xl tracking-wide">
+            Maison <i className="text-caramel">Pulcherie.B</i>
+          </span>
         </Link>
 
         {/* Menu ordinateur : caché sur mobile */}
